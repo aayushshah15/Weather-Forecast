@@ -15,23 +15,23 @@ weather.config(function ($routeProvider) {
 	})
 });
 weather.service('cityService', function() {
-	this.city = "New York";
+	this.city = "London";
 });
 weather.controller('homeController', ['$scope', '$resource', 'cityService', function ($scope, $resource, cityService){
 	$scope.city = cityService.city;
 	$scope.$watch('city', function(){
 		cityService.city = $scope.city;
 	});
-	$scope.weatherAPI = $resource("http://api.openweathermap.org/data/2.5/forecast/daily", { callback: "JSON_CALLBACK" }, { get: { method: "JSONP" } });
-	$scope.weatherResult = $scope.weatherAPI.get({
-		q: $scope.city, cnt: 2
-	});
-	
 }]);
 
-weather.controller('forecastController', ['$scope', 'cityService', function($scope, cityService){
+weather.controller('forecastController', ['$scope', '$resource', 'cityService', function($scope,$resource,cityService){
 	$scope.city = cityService.city;
 	$scope.$watch('city', function(){
 		cityService.city = $scope.city;
+	});
+	$scope.apiKey = '6d02ada16875b8cafa932b2f994360d6';
+	$scope.weatherAPI = $resource("http://api.openweathermap.org/data/2.5/forecast/daily", { callback: "JSON_CALLBACK" }, { get: { method: "JSONP" } });
+	$scope.weatherResult = $scope.weatherAPI.get({
+		q: $scope.city, cnt: 2, APPID: $scope.apiKey
 	});
 }]);
