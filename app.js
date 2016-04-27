@@ -1,7 +1,7 @@
 var weather = angular.module('weather', ['ngRoute', 'ngResource']);
 weather.config(function ($routeProvider) {
 	$routeProvider
-	.when('/', {
+	.when('', {
 		templateUrl: 'pages/home.html',
 		controller: 'homeController'
 	})
@@ -34,4 +34,10 @@ weather.controller('forecastController', ['$scope', '$resource', 'cityService', 
 	$scope.weatherResult = $scope.weatherAPI.get({
 		q: $scope.city, cnt: 2, APPID: $scope.apiKey
 	});
+	$scope.convertToDegree = function(degk) {
+		return Math.round(degk - 273.15);
+	};
+	$scope.convertToDate = function (date) {
+		return new Date(date * 1000);
+	}
 }]);
