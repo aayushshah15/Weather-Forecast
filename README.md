@@ -1,5 +1,5 @@
-# Weather-Forcast
-A weather forcast single page application built with AngularJS
+# Weather-Forecast
+A weather forecast single page application built with AngularJS
 
 =========================================================
 
