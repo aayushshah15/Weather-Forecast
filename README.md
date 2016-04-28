@@ -7,4 +7,4 @@ A weather forecast single page application built with AngularJS
 
 =========================================================
 
-![alt tag](http://i.imgur.com/IJBMnGr.png)
+![alt tag](http://i.imgur.com/swHlqAl.png)
