@@ -3,7 +3,7 @@
 	<div ng-controller="forecastController">
 	<h3>Forecast for {{ city }}</h3>
 	<hr />
-	Days: <a href="#/forecast/2" ng-class="{ 'bg-primary' : days === '2' }">2</a> | <a href="#/forecast/" ng-class="{ 'bg-primary' : days === '5' }">5</a> | <a href="#/forecast/7" ng-class="{ 'bg-primary' : days === '2' }">7</a>
+	Days: <a href="#/forecast/2" ng-class="{ 'bg-primary' : days === '2' }">2</a> | <a href="#/forecast/" ng-class="{ 'bg-primary' : days === '5' }">5</a> | <a href="#/forecast/7" ng-class="{ 'bg-primary' : days === '7' }">7</a>
 	<hr />
 	<div ng-repeat="w in weatherResult.list">
 		<div class = "row">
