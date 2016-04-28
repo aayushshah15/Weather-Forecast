@@ -9,6 +9,10 @@ weather.config(function ($routeProvider) {
 		templateUrl: 'pages/forecast.html',
 		controller: 'forecastController'
 	})
+	.when('/forecast/:days', {
+		templateUrl: 'pages/forecast.html',
+		controller:'forecastController'
+	})
 	.otherwise({
 		templateUrl: 'pages/home.html',
 		controller: 'homeController'
@@ -24,15 +28,16 @@ weather.controller('homeController', ['$scope', '$resource', 'cityService', func
 	});
 }]);
 
-weather.controller('forecastController', ['$scope', '$resource', 'cityService', function($scope,$resource,cityService){
+weather.controller('forecastController', ['$scope', '$resource', '$routeParams', 'cityService', function($scope,$resource, $routeParams, cityService){
 	$scope.city = cityService.city;
+	$scope.days = $routeParams.days || '5';
 	$scope.$watch('city', function(){
 		cityService.city = $scope.city;
 	});
 	$scope.apiKey = '6d02ada16875b8cafa932b2f994360d6';
 	$scope.weatherAPI = $resource("http://api.openweathermap.org/data/2.5/forecast/daily", { callback: "JSON_CALLBACK" }, { get: { method: "JSONP" } });
 	$scope.weatherResult = $scope.weatherAPI.get({
-		q: $scope.city, cnt: 2, APPID: $scope.apiKey
+		q: $scope.city, cnt: $scope.days, APPID: $scope.apiKey
 	});
 	$scope.convertToDegree = function(degk) {
 		return Math.round(degk - 273.15);
